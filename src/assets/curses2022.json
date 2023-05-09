@@ -1,0 +1,99 @@
+[
+    {
+      "id": 1,
+      "nom": "Carrera por montaña Sierra de Luesia - corta",
+      "fecha": "2022-06-26",
+      "coordenades": [42.36987, -1.021661],
+      "distancies": "Sí: 14 y 27 kms",
+      "distancia": [14],
+      "web": "https://carrerasierradeluesia.blogspot.com/",
+      "pais": "ESP",
+      "valoració": 2,
+      "logo": "sierra-de-luesia.png"
+    },
+    {
+      "id": 2,
+      "nom": "Carrera por montaña Sierra de Luesia - larga",
+      "fecha": "2022-06-26",
+      "coordenades": [42.36987, -1.021661],
+      "distancies": "Sí: 14 y 27 kms",
+      "distancia": [27],
+      "web": "https://carrerasierradeluesia.blogspot.com/",
+      "pais": "ESP",
+      "valoració": 2,
+      "logo": "sierra-de-luesia.png"
+    },
+  
+    {
+      "id": 6,
+      "nom": "Garmin Epic Trail by BUFF 12K",
+      "fecha": "2022-07-02",
+      "coordenades": [42.50524050219873, 0.8009472247041894],
+      "distancies": "Sí: 12, 23, 42 y 55 kms",
+      "distancia": [12],
+      "web": "https://www.garminmountainfestival.com/carreras/",
+      "pais": "ESP",
+      "valoració": 4,
+      "logo": "garmin-epic_trail.png"
+    },
+    {
+      "id": 7,
+      "nom": "Garmin Epic Trail by BUFF 23K",
+      "fecha": "2022-07-02",
+      "coordenades": [42.50524050219873, 0.8009472247041894],
+      "distancies": "Sí: 12, 23, 42 y 55 kms",
+      "distancia": [23],
+      "web": "https://www.garminmountainfestival.com/carreras/",
+      "pais": "ESP",
+      "valoració": 4,
+      "logo": "garmin-epic_trail.png"
+    },
+    {
+      "id": 8,
+      "nom": "Garmin Epic Trail by BUFF 42K",
+      "fecha": "2022-07-02",
+      "coordenades": [42.50524050219873, 0.8009472247041894],
+      "distancies": "Sí: 12, 23, 42 y 55 kms",
+      "distancia": [42],
+      "web": "https://www.garminmountainfestival.com/carreras/",
+      "pais": "ESP",
+      "valoració": 4,
+      "logo": "garmin-epic_trail.png"
+    },
+    {
+      "id": 9,
+      "nom": "Garmin Epic Trail by BUFF 55K",
+      "fecha": "2022-07-02",
+      "coordenades": [42.50524050219873, 0.8009472247041894],
+      "distancies": "Sí: 12, 23, 42 y 55 kms",
+      "distancia": [55],
+      "web": "https://www.garminmountainfestival.com/carreras/",
+      "pais": "ESP",
+      "valoració": 4,
+      "logo": "garmin-epic_trail.png"
+    },
+    {
+      "id": 10,
+      "nom": "Garmin Epic Trail by BUFF 55K",
+      "fecha": "2022-07-02",
+      "coordenades": [42.5066, 0.8011],
+      "distancies": "Sí: 12, 23, 42 y 55 kms",
+      "distancia": [55],
+      "web": "https://www.garminmountainfestival.com/carreras/",
+      "pais": "ESP",
+      "valoració": 4,
+      "logo": "garmin-epic_trail.png"
+    },
+    {
+      "id": 11,
+      "nom": "Garmin Epic Trail by BUFF 55K",
+      "fecha": "2022-07-02",
+      "coordenades": [42.5077, 0.8012],
+      "distancies": "Sí: 12, 23, 42 y 55 kms",
+      "distancia": [55],
+      "web": "https://www.garminmountainfestival.com/carreras/",
+      "pais": "ESP",
+      "valoració": 4,
+      "logo": "garmin-epic_trail.png"
+    }
+  ]

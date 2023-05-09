@@ -25,6 +25,7 @@
     "allowJs": true,
     "sourceMap": true,
     "types": ["vite/client"],
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*", "./*"]
@@ -38,7 +39,8 @@
     "tests/**/*.ts", 
     "tests/**/*.tsx",
     "src/**/*.d.ts",
-    "components.d.ts"
+    "components.d.ts",
+    "src/**/*.json",
   ],
   "exclude": ["node_modules"]
 }

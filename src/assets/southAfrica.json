@@ -1,0 +1,67 @@
+[
+    {
+      "id": 1,
+      "name": "Helderbosch Spar",
+      "date": "2023-05-01",
+      "coordinates": [-34.06349,18.83421],
+      "country": "South Africa",
+      "company": "Vodacom"
+    },
+    {
+      "id": 2,
+      "name": "Ooskus fisheries",
+      "date": "2023-05-02",
+      "coordinates": [-34.15720,18.87034],
+      "country": "South Africa",
+      "company": "Vodacom"
+    },
+  
+    {
+      "id": 6,
+      "name": "Die Boord Spar",
+      "date": "2023-05-03",
+      "coordinates": [-33.943571575252186, 18.851446168592396],
+      "country": "South Africa",
+      "company": "MTN"
+    },
+    {
+      "id": 7,
+      "name": "Eggin Beaufort West Truckstop",
+      "date": "2023-05-03",
+      "coordinates": [-32.361843358863, 22.560820882676822],
+      "country": "South Africa",
+      "company": "MTN"
+    },
+    {
+      "id": 8,
+      "name": "Engen Bloemfontein South 1",
+      "date": "2023-05-04",
+      "coordinates": [-29.072364139282847, 26.18373820715404],
+      "country": "South Africa",
+      "company": "MTN"
+    },
+    {
+      "id": 9,
+      "name": "Irene Link Shopping Centre Doringkloof Centurion",
+      "date": "2023-05-04",
+      "coordinates": [-25.85923340936404, 28.21808347234399],
+      "country": "South Africa",
+      "company": "MTN"
+    },
+    {
+      "id": 10,
+      "name": "Gateway Truck Stop Beitbridge",
+      "date": "2023-05-05",
+      "coordinates": [-22.237687560680552, 29.985863740969418],
+      "country": "South Africa",
+      "company": "Vodacom"
+    },
+    {
+      "id": 11,
+      "name": "Redwood Ultra City Figtree Zimbabwe",
+      "date": "2023-05-06",
+      "coordinates": [-20.37778973368878, 28.320988731920977],
+      "country": "Zimbabwe",
+      "company": "Vodacom"
+    }
+  ]
