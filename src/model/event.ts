@@ -7,3 +7,14 @@ export interface Event {
         country: string,
         company: string,
       }
+
+// define  a location List Item
+export interface LocationListItem {
+  id: number;
+  location: string;
+  }
+
+// define a shared state for every list item
+export interface SharedState {
+  active: boolean;
+  }

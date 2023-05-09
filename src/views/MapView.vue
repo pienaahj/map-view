@@ -3,12 +3,20 @@
       <div class="flex-container">
         <nav class="map-selector">
             <div>
-              <input type="text">
-              <button>Select Company</button>
+              <label for="">Select location</label>
+              <select v-model="locationSelected">
+                <option v-for="location in locations" :key="location.id">
+                {{ location.location }}
+                </option>
+              </select>
             </div>
             <div>
               <input type="text">
               <button>Select Country</button>
+            </div>
+            <div>
+              <input type="text">
+              <button>Select Company</button>
             </div>
         </nav>
       </div>
@@ -29,9 +37,11 @@
 
 import L from "leaflet";
 import "leaflet.markercluster";
-import { defineComponent, toRaw, onMounted, onBeforeUnmount } from "vue";
+import { defineComponent, toRaw, onMounted, onBeforeUnmount, ref, watch } from "vue";
 import destinations from "@/assets/southAfrica.json";
 import { Event } from "@/model/event";
+
+import { useMapStore }  from '@/stores/map';
 
 export default defineComponent ({
     name: 'MapView',
@@ -44,13 +54,17 @@ export default defineComponent ({
         //   country: string,
         //   company: string,
         // }
+        // get a mapstore from pinia
+        const store = useMapStore();
+
         const center:any = [-29.07, 26.18];
         const default_zoom :number= 6;
         let map: L.Map;
         let cluster:any = null;
         let markers:any = null;
         const eventString = JSON.stringify(destinations)
-        let events: Event[] = JSON.parse(eventString);
+        let allEvents: Event[] = JSON.parse(eventString);
+        let events: Event[] = allEvents;
         // let destinationData:Event = destinations;
         const setupLeafletMap = () => {
             map = L.map("mapContainer").setView(center, default_zoom);
@@ -136,7 +150,7 @@ export default defineComponent ({
         }
 
         // create the markers and use the custom marker
-        const createMarkers = () => {
+        const createMarkers = (events:Event[]) => {
             toRaw(markers).clearLayers();
             events.forEach((place:any) => placeMarkers(place));
 
@@ -164,24 +178,27 @@ export default defineComponent ({
             map.removeLayer(polyline);
           }
         };
-
-        // plot polylines ({ lat: number; lng: number })
-        let pointList = ():L.LatLngExpression[] => {
-          let coord:L.LatLng[] = [];
-          for (let point of events) {
-            let lat:number = point.coordinates[0];
-            let lng:number = point.coordinates[1];
-            let coordPoint = new L.LatLng(lat, lng);
-            coord.push(coordPoint);
+        // place the polylines
+        const placePolylines = (events:Event[], color:string, weight:number, opacity:number) => {
+          // plot polylines ({ lat: number; lng: number })
+          let pointList = (events:Event[]):L.LatLngExpression[] => {
+            let coord:L.LatLng[] = [];
+            for (let point of events) {
+              let lat:number = point.coordinates[0];
+              let lng:number = point.coordinates[1];
+              let coordPoint = new L.LatLng(lat, lng);
+              coord.push(coordPoint);
+            }
+            return coord;
           }
-          return coord;
-        }
 
-        let positions = pointList();
-        const color = "red";
-        const weight = 3;
-        const opacity = 0.5;
-        const createPolyline = (color:string, weight: number, opacity: number ) => {
+          let positions = pointList(events);
+          // const color = "red";
+          // const weight = 3;
+          // const opacity = 0.5;
+          createPolyline(positions, color, weight, opacity)
+        }
+        const createPolyline = (positions:L.LatLngExpression[], color:string, weight: number, opacity: number ) => {
           clearPolyline();
 
           polyline = new L.Polyline(positions, {
@@ -193,11 +210,44 @@ export default defineComponent ({
             smoothFactor:1
           }).addTo(map);
         };
+        // plot polylines ({ lat: number; lng: number })
+        // let pointList = (events:Event[]):L.LatLngExpression[] => {
+        //   let coord:L.LatLng[] = [];
+        //   for (let point of events) {
+        //     let lat:number = point.coordinates[0];
+        //     let lng:number = point.coordinates[1];
+        //     let coordPoint = new L.LatLng(lat, lng);
+        //     coord.push(coordPoint);
+        //   }
+        //   return coord;
+        // }
+
+        // let positions = pointList(events:Event[]);
+        // const color = "red";
+        // const weight = 3;
+        // const opacity = 0.5;
+        // const createPolyline = (color:string, weight: number, opacity: number ) => {
+        //   clearPolyline();
+
+        //   polyline = new L.Polyline(positions, {
+        //     color: color,
+        //     weight: weight,
+        //     opacity: opacity,
+        //     interactive: false,
+        //     stroke: true,
+        //     smoothFactor:1
+        //   }).addTo(map);
+        // };
 
         onMounted(() => {
           setupLeafletMap();
-          createMarkers();
-          createPolyline(color, weight, opacity);
+          createMarkers(allEvents);
+          // createPolyline(color, weight, opacity);
+          const color = "red";
+          const weight = 3;
+          const opacity = 0.5;
+
+          placePolylines(allEvents, color, weight, opacity);
         });
 
         onBeforeUnmount(() => {
@@ -206,6 +256,42 @@ export default defineComponent ({
           }
         });
 
+        // selection in filters
+        const locations = store.selectLocation(destinations);
+        const locationSelected = ref('');
+
+        // watch the selectors for changes
+        watch(locationSelected, () => {
+          // filter the events with the selected events
+          events = store.filterByLocation(locationSelected.value, allEvents);
+          store.selectLocation(events);
+          console.log("selected location : " + locationSelected.value);
+          console.log("events after filtering, selecting: " + JSON.stringify(events));
+          // update the dispaled map with the selected events
+          createMarkers(events);
+          // createPolyline(color, weight, opacity);
+          const color = "red";
+          const weight = 3;
+          const opacity = 0.5;
+
+          placePolylines(events, color, weight, opacity);
+        });  
+
+        // update map with the computed filters
+        // const locationFilter = computed((loc:Ref<string>) => {
+        //   const locationEvents = store.filterByLocation
+        //   createMarkers(locationEvents{db:});
+        //   // createPolyline(color, weight, opacity);
+        //   const color = "red";
+        //   const weight = 3;
+        //   const opacity = 0.5;
+
+        //   placePolylines(allEvents, color, weight, opacity);
+        //   return locationEvents;
+        // })
+
+
+
         return {
             markers,
             cluster,
@@ -213,6 +299,8 @@ export default defineComponent ({
             createMarkers,
             events,
             createPolyline,
+            locations,
+            locationSelected,
         };
     },
     
