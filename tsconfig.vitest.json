@@ -4,6 +4,22 @@
   "compilerOptions": {
     "composite": true,
     "lib": [],
-    "types": ["node", "jsdom"]
-  }
+    "types": ["node", "jsdom"],
+    "module": "esnext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "target": "es2015",
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src/**/*",
+    "src/assets/**/*",
+    "src/**/*.json",
+    "src/assets/southAfrica.json"
+  ]
 }
